@@ -14,19 +14,19 @@ if __name__ == "__main__":
     corr = curator.create_correlation_dataset()
     desc = curator.create_descriptive_dataset()
     pred = curator.create_predictive_dataset()
-    print("✅ Sub datasets created.")
+    print("Sub datasets created.")
 
     # --- Analyses ---
     corr_analysis = CorrelationAnalysis("outputs/Correlation.csv")
     corr_analysis.analyze()
-    print("✅ Correlation analysis complete.")
+    print("Correlation analysis complete.")
 
     desc_analysis = DescriptiveAnalysis("outputs/Descriptive.csv")
     desc_analysis.analyze()
-    print("✅ Descriptive analysis complete.")
+    print("Descriptive analysis complete.")
 
     pred_analysis = PredictiveAnalysis("outputs/Predictive.csv")
     pred_analysis.analyze()
-    print("✅ Predictive analysis complete.")
+    print("Predictive analysis complete.")
 
     print("=== ALL ANALYSES DONE ===")
