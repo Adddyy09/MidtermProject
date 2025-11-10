@@ -1,4 +1,5 @@
 from utils.data_curation import DataCuration
+from utils.data_cleaning import DataCleaner
 from analyses.correlation_analysis import CorrelationAnalysis
 from analyses.descriptive_analysis import DescriptiveAnalysis
 from analyses.predictive_analysis import PredictiveAnalysis
@@ -9,8 +10,12 @@ if __name__ == "__main__":
 
     dataset_path = "data/HR_Analytics.csv"
 
+    # --- Data Cleaning ---
+    cleaner = DataCleaner(dataset_path)
+    clean_data = cleaner.clean()
+
     # --- Data Curation ---
-    curator = DataCuration(dataset_path)
+    curator = DataCuration(clean_data)
     corr = curator.create_correlation_dataset()
     desc = curator.create_descriptive_dataset()
     pred = curator.create_predictive_dataset()
@@ -22,7 +27,9 @@ if __name__ == "__main__":
     print("Correlation analysis complete.")
 
     desc_analysis = DescriptiveAnalysis("outputs/Descriptive.csv")
-    desc_analysis.analyze()
+    desc_analysis.summary()
+    desc_analysis.attrition_rates()
+    desc_analysis.visualize_distribution()
     print("Descriptive analysis complete.")
 
     pred_analysis = PredictiveAnalysis("outputs/Predictive.csv")
@@ -30,3 +37,5 @@ if __name__ == "__main__":
     print("Predictive analysis complete.")
 
     print("=== ALL ANALYSES DONE ===")
+
+    
