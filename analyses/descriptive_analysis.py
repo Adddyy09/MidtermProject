@@ -43,18 +43,33 @@ class DescriptiveAnalysis:
             plt.show(block=block)
         plt.close()
 
-        # Bar Plot: Attrition Count by Department
+        # Prepare data for attrition plots
         dept_attrition = self.data.copy()
         dept_attrition['Attrition'] = dept_attrition['Attrition'].map({'No':0, 'Yes':1})
-        dept_agg = dept_attrition.groupby('Department')['Attrition'].sum().reset_index()
 
+        # Bar Plot: Attrition Count by Department
+        dept_count_agg = dept_attrition.groupby('Department')['Attrition'].sum().reset_index()
         plt.figure(figsize=(8, 5))
-        sns.barplot(x='Department', y='Attrition', data=dept_agg)
+        sns.barplot(x='Department', y='Attrition', data=dept_count_agg)
         plt.title("Attrition Count by Department")
         plt.xlabel("Department")
         plt.ylabel("Number of Attritions")
         plt.tight_layout()
         plt.savefig('outputs/plots/attrition_count_by_department.png')
+        if show:
+            plt.show(block=block)
+        plt.close()
+
+        # Bar Plot: Attrition Rate by Department
+        dept_rate_agg = dept_attrition.groupby('Department')['Attrition'].mean().reset_index()
+
+        plt.figure(figsize=(8, 5))
+        ax = sns.barplot(x='Department', y='Attrition', data=dept_rate_agg)
+        plt.title("Attrition Rate by Department")
+        plt.xlabel("Department")
+        plt.ylabel("Attrition Rate")
+        plt.tight_layout()
+        plt.savefig('outputs/plots/attrition_rate_by_department.png')
         if show:
             plt.show(block=block)
         plt.close()
