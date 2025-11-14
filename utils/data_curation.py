@@ -7,10 +7,8 @@ class DataCuration:
         os.makedirs("outputs", exist_ok=True)
 
     def create_correlation_dataset(self):
-        df = self.data[['Age', 'MonthlyIncome', 
-        'YearsAtCompany', 'WorkLifeBalance', 
-        'JobSatisfaction', 'OverTime', 
-        'PerformanceRating', 'Attrition']]
+        df = self.data[["Age", "MonthlyIncome", "TotalWorkingYears",
+                         "YearsAtCompany", "JobLevel", "Education"]]
         df.to_csv('outputs/Correlation.csv', index=False)
         return df
 

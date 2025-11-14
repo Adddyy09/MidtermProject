@@ -9,10 +9,6 @@ class DescriptiveAnalysis:
         self.data = pd.read_csv(dataset_path)
         os.makedirs("outputs/plots", exist_ok=True) 
 
-    def summary(self):
-        print("# Summary Statistics")
-        return self.data.describe(include='all')
-
     def attrition_rates(self):
         rates = self.data['Attrition'].value_counts(normalize=True)
         print("# Attrition Rates\n", rates)

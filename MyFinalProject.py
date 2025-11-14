@@ -27,7 +27,6 @@ if __name__ == "__main__":
     print("Correlation analysis complete.")
 
     desc_analysis = DescriptiveAnalysis("outputs/Descriptive.csv")
-    desc_analysis.summary()
     desc_analysis.attrition_rates()
     desc_analysis.visualize_distribution()
     print("Descriptive analysis complete.")
